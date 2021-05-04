@@ -82,8 +82,13 @@ const fi = (function() {
       
     },
     flatten: function(array, depth) {
-      array.flat(depth)
-      
+      let newArr = [...array];
+      if(depth){
+         newArr.flat(depth);
+      }else{
+         newArr.flat(1);
+      }
+      return newArr;
     },
     uniq: function() {
   
