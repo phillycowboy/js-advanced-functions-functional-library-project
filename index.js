@@ -81,14 +81,21 @@ const fi = (function() {
       return newArr.sort((a,b) => callback(a) - callback(b));
       
     },
-    flatten: function(array, depth) {
-      let newArr = [...array];
+    flatten: function(array, depth, newArr = []) {
       if(depth){
-         newArr.flat(depth);
-      }else{
-         newArr.flat(1);
+      for(let a of array){
+        Array.isArray(a) ? this.unpack(newArr, a) : newArr.push(a);
       }
-      return newArr;
+    }else{
+      depth === false
+      array.flat(1);
+    }
+      // if(depth === true){
+      //    return newArr.flat(1);
+      // }else{
+      //   return newArr.flat(depth);
+      // }
+      // return newArr;
     },
     uniq: function() {
   
@@ -110,8 +117,14 @@ const fi = (function() {
       return newArr;
     },
 
-    functions: function() {
-
+    functions: function(object) {
+      let newArr = [];
+      for(let o in object){
+        if(typeof object[o] === "function"){
+          newArr.push(o)
+        }
+      }
+      return newArr.sort();
     },
 
 
@@ -119,3 +132,4 @@ const fi = (function() {
 })()
 
 fi.libraryMethod()
+
