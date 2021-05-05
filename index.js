@@ -101,6 +101,9 @@ const fi = (function() {
   
       
     },
+
+    // TRIED TO DO BOTH FLATTEN AND UNIQ AND THE SOLUTION DIDNT WORK, AND THE TC'S COULDNT HELP. 
+    // WILL REVISIT LATER....
     keys: function(object) {
       let newArr = [];
       for(const o in object){
